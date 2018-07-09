@@ -186,7 +186,7 @@ def cache_check(username, category, subtypes):
         prefix = prefix + ''.join([str(i) for i in subtypes['/wish']])
     if subtypes['/do'] is not None:
         prefix = prefix + ''.join([str(i) for i in subtypes['/do']])
-    for filename in os.listdir('sheets'):
+    for filename in os.listdir(SHEETS_DIR):
         if filename.startswith(prefix):
             rv['msg'] = '此 ID 六小时内已导出过, 请直接下载缓存结果'
             rv['type'] = 'done'
@@ -234,7 +234,7 @@ def urlopen(url):
     if CUSTOM_COOKIE:
         req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36')
     else:
-        req.add_header('User-Agent', 'Baiduspider')
+        req.add_header('User-Agent', 'Googlebot')
         cookie = cookielib.Cookie(None, 'bid', random.choice(BIDS), '80', '80', '.douban.com', None, None, '/', None, False, False, None, None, None, None)
         cookies.set_cookie(cookie)
     return opener.open(req, timeout=5)
